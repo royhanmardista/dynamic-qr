@@ -1,0 +1,43 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- **Prefer Guard Clauses for Clarity**
+  - **Goal**: Reduce nesting and improve readability by handling exit conditions early.
+  - **Method**: At a function's start, check preconditions/edge cases. If met, exit immediately (e.g., `return`, `throw`, `continue`).
+  - **✅ DO (Guard Clauses):**
+    ```typescript
+    function processItem(item: Item | null): void {
+      if (!item) { return console.error("Item is null."); }
+      if (!item.isValid) { return console.warn(`Item ${item.id} invalid.`); }
+      if (item.status === 'processed') { return console.log(`Item ${item.id} processed.`); }
+
+      // ... main processing logic ...
+      console.log("Processing item:", item.id);
+    }
+    
+    function processArray(items: string[]): void {
+       for (const item of items) {
+          if (item.length === 0) {
+             continue; // Skip empty items using a guard clause within the loop
+          }
+          // ... process non-empty item ...
+       }
+    }
+    ```
+  - **❌ DON'T (Nested `if`/`else`):**
+    ```typescript
+    function processItem(item: Item | null): void {
+      if (item) {
+        if (item.isValid) {
+           if (item.status !== 'processed') {
+              // ... main processing logic ...
+              console.log("Processing item:", item.id);
+           } else { /* ... */ }
+        } else { /* ... */ }
+      } else { /* ... */ }
+    }
+    ```
+
+- **(Future guidelines can be added here)**

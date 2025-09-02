@@ -1,0 +1,87 @@
+---
+description: Best practices for handling git commits
+globs: 
+alwaysApply: false
+---
+# Git Commit Best Practices
+Location: .cursor/rules/git-commit.mdc
+
+**CORE PRINCIPLE: Split by logical change first, then by commit type only if necessary.**
+
+## **Commit Splitting Strategy**
+
+- **Each commit must contain only ONE logical change**
+  - A logical change is a single business/functional concern (e.g., "add authentication", "implement user profiles", "fix validation bug")
+  - One logical change can include both new files AND modifications to existing files
+  - Only split by commit type (feat/refactor/docs) if the same logical area has multiple distinct change types
+
+- **Identify Logical Boundaries**
+  - Authentication system = one logical change
+  - Route management system = separate logical change  
+  - UI styling updates = separate logical change
+  - Bug fixes = separate logical change per bug
+
+## **Commit Process**
+
+1. **Examine changes:**
+   ```bash
+   git status
+   git diff | cat
+   ```
+   Always pipe git diff through cat to avoid pager issues.
+
+2. **Identify logical changes:**
+   - Group related files by business purpose
+   - Separate unrelated concerns even if developed together
+   - Use `git add -p` or stage files individually to split changes
+
+3. **Apply conventional commit format:**
+   - `feat:` for new features or capabilities
+   - `fix:` for bug fixes  
+   - `docs:` for documentation changes
+   - `refactor:` for code restructuring without functional changes
+   - `style:` for formatting and style changes
+   - `chore:` for maintenance tasks (dependencies, build tasks)
+
+4. **Commit in dependency order:**
+   - Infrastructure/utilities before features that use them
+   - Core functionality before dependent features
+   - Documentation can be first or last as appropriate
+
+## **Examples**
+
+**❌ DON'T: Split artificially by file type**
+```
+1. "feat: add new AuthProvider files"
+2. "refactor: update existing files to use AuthProvider"
+```
+
+**✅ DO: Split by logical change**
+```
+1. "feat: implement authentication provider system"
+   (includes new AuthProvider + updates to existing files)
+```
+
+**❌ DON'T: Combine unrelated logical changes**
+```
+1. "feat: add authentication system and route constants"
+```
+
+**✅ DO: Separate logical concerns**
+```
+1. "feat: add centralized route constants and utilities"
+2. "feat: implement authentication provider system"
+```
+
+**✅ DO: Split when same area has different change types**
+```
+1. "feat: implement user profile page"
+2. "style: standardize formatting in user components"  
+3. "docs: add user profile documentation"
+```
+
+## **Verification**
+
+- Run `git status` to ensure working tree is clean
+- Each commit should represent a complete, working state
+- Commit messages should clearly describe the business value/change

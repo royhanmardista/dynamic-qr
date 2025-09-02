@@ -1,0 +1,33 @@
+---
+description: Use yarn as the primary package manager and ensure Node.js 22+ is active
+globs: **/*
+alwaysApply: true
+---
+
+# Package Management Rules
+
+- **Node Version Management:** Always check and use Node.js version 22 or above before running any yarn commands:
+  - Run `nvm use 22` or `nvm use node` (for latest) before yarn operations
+  - If Node 22+ is not installed, run `nvm install 22` first
+  - **IMPORTANT:** Set Node 22 as default the first time yarn is called in this project: `nvm alias default 22`
+  - Verify version with `node --version` to ensure v22.x.x or higher
+- **Primary Package Manager:** Use `yarn` for all package installation, removal, and update operations (e.g., `yarn add`, `yarn install`, `yarn remove`). Avoid using `npm` or `pnpm` unless explicitly instructed otherwise for a specific reason.
+- **Script Runner:** Use `yarn` to run scripts e.g. `yarn build`, `yarn dev`, `yarn test`
+- **Dependency Types:** When adding dependencies, use the correct flags:
+  - `yarn add <package>` for runtime dependencies.
+  - `yarn add -D <package>` for development dependencies (e.g., types, build tools, linters).
+- **Lockfile:** Ensure `yarn.lock` is included in commits when dependencies change.
+
+## Command Sequence Example:
+
+```bash
+# First time setup in this project:
+nvm use 22
+nvm alias default 22  # Set Node 22 as system default
+node --version        # Verify v22.x.x or higher
+yarn install         # Now run yarn command
+
+# Subsequent yarn commands (after default is set):
+yarn dev             # Node 22 will be used automatically
+yarn build           # Node 22 will be used automatically
+```
