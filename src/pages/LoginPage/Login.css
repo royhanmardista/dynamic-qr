@@ -19,7 +19,7 @@
   align-items: center;
   padding: 30px;
   width: 50%;
-  background: #f8fafc;
+  background: var(--background-light);
   flex-shrink: 0;
 }
 
@@ -34,7 +34,7 @@
   margin: 26px 0 32px 0;
   font-size: 2.5rem;
   font-weight: 400;
-  color: #1f2937;
+  color: var(--text-primary);
   max-width: 400px;
 }
 
@@ -43,15 +43,13 @@
 }
 
 .terms-link {
-  color: #50d9cd;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 .terms-link:hover {
   text-decoration: underline;
 }
-
-/* Remove old login-form styles as we're using auth-container now */
 
 .success-message {
   text-align: center;
@@ -61,7 +59,7 @@
 .success-icon {
   width: 4rem;
   height: 4rem;
-  background: linear-gradient(135deg, #50d9cd 0%, #059669 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -75,14 +73,14 @@
 
 .success-message h3 {
   margin: 0 0 0.5rem 0;
-  color: #1f2937;
+  color: var(--text-primary);
   font-size: 1.25rem;
   font-weight: 600;
 }
 
 .success-message p {
   margin: 0;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 

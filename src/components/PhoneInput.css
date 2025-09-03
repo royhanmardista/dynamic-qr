@@ -34,8 +34,8 @@
   height: 100%;
   padding: 0;
   border: none;
-  border-bottom: 1px solid #d1d5db;
-  background: linear-gradient(#50d9cd 0 0) bottom / 0% 2px no-repeat;
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(var(--primary-color) 0 0) bottom / 0% 2px no-repeat;
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -48,7 +48,7 @@
 }
 
 .phone-input:disabled {
-  background-color: #f9fafb;
+  background-color: var(--disabled-bg);
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -57,7 +57,7 @@
   position: absolute;
   left: 2px;
   bottom: 8px;
-  color: #9ca3af;
+  color: var(--text-muted);
   font-size: 0.9rem;
   pointer-events: none;
   transition: all 0.2s ease;
@@ -68,17 +68,8 @@
   left: 2px;
   bottom: 30px;
   font-size: 0.75rem;
-  color: #50d9cd;
+  color: var(--primary-color);
   opacity: 1;
-}
-
-.error-message {
-  height: 34px;
-  max-width: 360px;
-  padding-left: 10px;
-  color: #ef4444;
-  font-size: 0.75rem;
-  margin-top: 4px;
 }
 
 .terms-text {
@@ -88,7 +79,7 @@
 
 .terms-text p {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   line-height: 1.4;
   margin: 0;
 }
@@ -98,10 +89,10 @@
   height: 36px;
   width: 100%;
   max-width: 360px;
-  background: #50d9cd;
+  background: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.5px;
@@ -111,7 +102,7 @@
 }
 
 .verify-button:hover:not(:disabled) {
-  background: #059669;
+  background: var(--primary-hover);
 }
 
 .verify-button:disabled {

@@ -14,18 +14,18 @@
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
 }
 
 .otp-header p {
   margin: 0;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   line-height: 1.4;
 }
 
 .phone-highlight {
-  color: #50d9cd;
+  color: var(--primary-color);
   font-weight: 600;
   letter-spacing: 0.5px;
 }
@@ -44,50 +44,41 @@
 .otp-input {
   width: 2.5rem;
   height: 2.5rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 6px;
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-md);
   text-align: center;
   font-size: 1rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
   transition: all 0.2s ease;
   background: white;
 }
 
 .otp-input:focus {
   outline: none;
-  border-color: #50d9cd;
+  border-color: var(--primary-color);
   box-shadow: 0 0 0 3px rgba(80, 217, 205, 0.1);
   transform: scale(1.05);
 }
 
 .otp-input:disabled {
-  background-color: #f9fafb;
+  background-color: var(--disabled-bg);
   cursor: not-allowed;
 }
 
 .otp-input:not(:placeholder-shown) {
-  border-color: #50d9cd;
-  background-color: #f0fdf4;
-}
-
-.error-message {
-  height: 34px;
-  max-width: 360px;
-  padding-left: 10px;
-  color: #ef4444;
-  font-size: 0.75rem;
-  margin-top: 4px;
+  border-color: var(--primary-color);
+  background-color: var(--success-bg);
 }
 
 .continue-button {
   height: 36px;
   width: 100%;
   max-width: 360px;
-  background: #50d9cd;
+  background: var(--primary-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: -0.5px;
@@ -97,7 +88,7 @@
 }
 
 .continue-button:hover:not(:disabled) {
-  background: #059669;
+  background: var(--primary-hover);
 }
 
 .continue-button:disabled {
@@ -109,34 +100,34 @@
   max-width: 360px;
   text-align: center;
   padding-top: 0.5rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-light);
 }
 
 .resend-section p {
   margin: 0 0 0.5rem 0;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
 }
 
 .resend-button {
   background: none;
   border: none;
-  color: #50d9cd;
+  color: var(--primary-color);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   padding: 0.5rem;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   transition: all 0.2s ease;
 }
 
 .resend-button:hover:not(.disabled) {
-  background-color: #f0fdf4;
+  background-color: var(--success-bg);
   transform: translateY(-1px);
 }
 
 .resend-button.disabled {
-  color: #9ca3af;
+  color: var(--text-muted);
   cursor: not-allowed;
 }
 
@@ -172,6 +163,6 @@
 
 .otp-input.success {
   animation: success-pulse 0.3s ease;
-  border-color: #50d9cd;
-  background-color: #f0fdf4;
+  border-color: var(--primary-color);
+  background-color: var(--success-bg);
 }

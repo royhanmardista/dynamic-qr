@@ -13,7 +13,7 @@
   height: 100%;
   padding: 0 8px;
   border: none;
-  border-bottom: 1px solid #d1d5db;
+  border-bottom: 1px solid var(--border-color);
   background: transparent;
   font-size: 0.875rem;
   font-weight: 500;
@@ -23,19 +23,19 @@
 }
 
 .country-picker-trigger:hover:not(.disabled) {
-  border-bottom-color: #50d9cd;
+  border-bottom-color: var(--primary-color);
 }
 
 .country-picker-trigger:focus:not(.disabled) {
-  border-bottom-color: #50d9cd;
+  border-bottom-color: var(--primary-color);
 }
 
 .country-picker-trigger.open {
-  border-bottom-color: #50d9cd;
+  border-bottom-color: var(--primary-color);
 }
 
 .country-picker-trigger.disabled {
-  background-color: #f9fafb;
+  background-color: var(--disabled-bg);
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -48,14 +48,14 @@
 
 .country-code {
   font-weight: 500;
-  color: #374151;
+  color: var(--text-primary);
   flex: 1;
   text-align: left;
 }
 
 .dropdown-arrow {
   flex-shrink: 0;
-  color: #9ca3af;
+  color: var(--text-muted);
   transition: transform 0.2s ease;
 }
 
@@ -70,11 +70,9 @@
   right: 0;
   z-index: 1000;
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  box-shadow:
-    0 10px 25px -5px rgba(0, 0, 0, 0.1),
-    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
   max-height: 400px;
   min-height: 300px;
   overflow: hidden;
@@ -85,7 +83,7 @@
 .country-search {
   padding: 12px;
   margin: 0 auto;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   justify-content: center;
 }
@@ -93,15 +91,15 @@
 .country-search-input {
   width: 100%;
   padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
   font-size: 0.875rem;
   outline: none;
   transition: border-color 0.2s ease;
 }
 
 .country-search-input:focus {
-  border-color: #50d9cd;
+  border-color: var(--primary-color);
 }
 
 .country-list {
@@ -127,12 +125,12 @@
 
 .country-option:hover,
 .country-option.highlighted {
-  background-color: #f9fafb;
+  background-color: var(--disabled-bg);
 }
 
 .country-option.selected {
-  background-color: #ecfdf5;
-  color: #50d9cd;
+  background-color: var(--success-bg);
+  color: var(--primary-color);
 }
 
 .country-option .country-flag {
@@ -151,7 +149,7 @@
 
 .country-name {
   font-weight: 500;
-  color: #374151;
+  color: var(--text-primary);
   flex: 1;
   text-align: left;
   overflow: hidden;
@@ -162,7 +160,7 @@
 
 .country-dial-code {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-weight: 500;
   flex-shrink: 0;
   margin-left: 8px;
@@ -170,13 +168,13 @@
 
 .country-option.selected .country-name,
 .country-option.selected .country-dial-code {
-  color: #50d9cd;
+  color: var(--primary-color);
 }
 
 .no-results {
   padding: 16px;
   text-align: center;
-  color: #6b7280;
+  color: var(--text-secondary);
   font-size: 0.875rem;
   font-style: italic;
 }

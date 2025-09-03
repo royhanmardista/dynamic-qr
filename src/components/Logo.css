@@ -1,7 +1,7 @@
 .logo-wrapper {
   height: auto;
   width: 143px;
-  background: white;
+  background: var(--background-white);
   margin: 16px 28px 16px 0px;
   float: left;
 }
