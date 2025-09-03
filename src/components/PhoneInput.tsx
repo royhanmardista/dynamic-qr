@@ -3,7 +3,7 @@ import { useAuthContext } from '../contexts/AuthContext'
 import { type Country, findCountryByDialCode } from '../data/countries'
 import { authApi, AuthStatus } from '../services/authApi'
 import CountryPicker from './CountryPicker'
-import './PhoneInput.css'
+import '../styles/animations.css'
 import {
   formatPhoneNumber,
   formatPhoneNumberDisplay,
@@ -69,9 +69,9 @@ const PhoneInput = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="phone-input-form">
-      <div className="phone-input-container">
-        <div className="country-selector">
+    <form onSubmit={handleSubmit} className="flex h-[100px] w-full flex-col justify-between mb-2.5">
+      <div className="w-full max-w-[360px] h-[50px] flex gap-3 items-end">
+        <div className="flex-shrink-0 w-[100px] h-[45px] z-10">
           <CountryPicker
             selectedCountry={selectedCountry}
             onCountrySelect={handleCountrySelect}
@@ -79,27 +79,27 @@ const PhoneInput = () => {
           />
         </div>
 
-        <div className="phone-number-input">
+        <div className="relative flex-1 h-[45px]">
           <input
             type="tel"
             value={phoneNumber}
             onChange={handlePhoneChange}
-            className="phone-input"
+            className="w-full h-full p-0 border-0 border-b border-gray-300 animated-underline text-base font-medium outline-none disabled:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
             disabled={auth.isLoading}
             required
             maxLength={20}
           />
-          <label className={`floating-label ${phoneNumber ? 'active' : ''}`}>
+          <label className={`absolute left-0.5 ${phoneNumber ? 'bottom-[30px] text-xs text-[#50d9cd] opacity-100' : 'bottom-2 text-gray-400 text-sm'} pointer-events-none transition-all duration-200 ease-in-out peer-focus:left-0.5 peer-focus:bottom-[30px] peer-focus:text-xs peer-focus:text-[#50d9cd] peer-focus:opacity-100`}>
             Phone number
           </label>
         </div>
       </div>
 
-      {auth.error && <div className="error-message">{auth.error}</div>}
+      {auth.error && <div className="text-red-500 text-xs mt-2">{auth.error}</div>}
 
       <button
         type="submit"
-        className="verify-button"
+        className="mt-2.5 h-9 w-full max-w-[360px] bg-[#50d9cd] text-white border-none rounded text-sm font-semibold tracking-tight cursor-pointer transition-colors uppercase hover:bg-[#059669] hover:enabled:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
         disabled={
           auth.isLoading ||
           !phoneNumber.trim() ||
@@ -109,14 +109,14 @@ const PhoneInput = () => {
         {auth.isLoading ? 'Sending...' : 'VERIFY'}
       </button>
 
-      <div className="terms-text">
-        <p>
+      <div className="max-w-[360px] mt-4">
+        <p className="text-xs text-gray-600 leading-relaxed m-0">
           By tapping Verify, you are indicating that you accept our{' '}
           <a
             href="https://www.staffany.com/terms-of-services"
             target="_blank"
             rel="noopener noreferrer"
-            className="terms-link"
+            className="text-[#50d9cd] no-underline hover:underline"
           >
             Terms of Service
           </a>{' '}
@@ -125,7 +125,7 @@ const PhoneInput = () => {
             href="https://www.staffany.com/privacy-policy"
             target="_blank"
             rel="noopener noreferrer"
-            className="terms-link"
+            className="text-[#50d9cd] no-underline hover:underline"
           >
             Privacy Policy
           </a>

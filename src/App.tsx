@@ -1,4 +1,4 @@
-import './App.css'
+import './styles/animations.css'
 import { AuthProvider, useAuthContext } from './contexts/AuthContext'
 import { useSessionStorage } from './hooks/useSessionStorage'
 import Login from './pages/LoginPage/Login'
@@ -10,10 +10,10 @@ const AppContent = () => {
 
   if (!auth.isInitialized) {
     return (
-      <div className="app-loading">
-        <div className="loading-spinner">
-          <div className="spinner"></div>
-          <p>Loading...</p>
+      <div className="flex items-center justify-center h-screen w-full bg-gray-50">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-3 border-gray-200 border-t-[#50d9cd] rounded-full spinner-animation"></div>
+          <p className="text-gray-600 text-sm m-0">Loading...</p>
         </div>
       </div>
     )
@@ -34,23 +34,23 @@ const AppContent = () => {
   }
 
   return (
-    <div className="app-container">
-      <header className="app-header">
-        <h1>Dynamic QR Dashboard</h1>
-        <div className="user-info">
+    <div className="min-h-screen flex flex-col">
+      <header className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm md:flex-row flex-col gap-4 text-center">
+        <h1 className="m-0 text-2xl text-gray-800 font-bold">Dynamic QR Dashboard</h1>
+        <div className="flex items-center gap-4 text-gray-600 justify-center">
           <span>Welcome, {user}</span>
-          <button onClick={handleLogout} className="logout-button">
+          <button onClick={handleLogout} className="bg-red-500 text-white border-none px-4 py-2 rounded-md text-sm cursor-pointer transition-colors hover:bg-red-600">
             Logout
           </button>
         </div>
       </header>
 
-      <main className="app-main">
-        <div className="qr-section">
-          <h2>Your QR Code</h2>
-          <div className="qr-placeholder">
-            <p>QR Code will be generated here</p>
-            <small>Dynamic QR functionality coming soon...</small>
+      <main className="flex-1 p-8 bg-gray-50 md:p-8 p-4">
+        <div className="max-w-[600px] mx-auto bg-white rounded-xl p-8 shadow-md md:p-8 p-6">
+          <h2 className="m-0 mb-6 text-gray-800 text-center">Your QR Code</h2>
+          <div className="flex flex-col items-center justify-center h-[200px] border-2 border-dashed border-gray-300 rounded-lg text-gray-600 text-center">
+            <p className="m-0 mb-2 text-lg">QR Code will be generated here</p>
+            <small className="text-gray-400">Dynamic QR functionality coming soon...</small>
           </div>
         </div>
       </main>

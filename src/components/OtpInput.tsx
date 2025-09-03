@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useSessionStorage } from '../hooks/useSessionStorage'
 import { authApi, AuthStatus } from '../services/authApi'
-import './OtpInput.css'
+import '../styles/animations.css'
 
 const OtpInput = () => {
   const { auth, setAuth } = useAuthContext()
@@ -139,17 +139,17 @@ const OtpInput = () => {
   }
 
   return (
-    <div className="otp-container">
-      <div className="otp-header">
-        <h3>Enter verification code</h3>
-        <p>
+    <div className="w-full max-w-[400px] text-left justify-start items-start">
+      <div className="mb-12">
+        <h3 className="m-0 mb-2 text-2xl font-semibold text-gray-800">Enter verification code</h3>
+        <p className="m-0 text-gray-600 text-sm leading-relaxed">
           We sent a 6-digit code to{' '}
-          <span className="phone-highlight">{auth.phoneNumber}</span>
+          <span className="text-[#50d9cd] font-semibold tracking-wide">{auth.phoneNumber}</span>
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="otp-form">
-        <div className="otp-inputs" onPaste={handlePaste}>
+      <form onSubmit={handleSubmit} className="mb-4">
+        <div className="flex gap-3 justify-start mb-2" onPaste={handlePaste}>
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -162,19 +162,19 @@ const OtpInput = () => {
               value={digit}
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
-              className="otp-input"
+              className={`w-10 h-10 border-2 border-gray-200 rounded-md text-center text-base font-semibold text-gray-800 transition-all bg-white focus:outline-none focus:border-[#50d9cd] focus:shadow-[0_0_0_3px_rgba(80,217,205,0.1)] focus:scale-105 disabled:bg-gray-50 disabled:cursor-not-allowed ${digit ? 'border-[#50d9cd] bg-green-50' : ''}`}
               disabled={auth.isLoading}
               autoComplete="one-time-code"
             />
           ))}
         </div>
 
-        {auth.error && <div className="error-message">{auth.error}</div>}
+        {auth.error && <div className="text-red-500 text-xs mt-2">{auth.error}</div>}
 
-        <div className="otp-buttons">
+        <div className="w-full max-w-[360px] mb-2">
           <button
             type="submit"
-            className="continue-button"
+            className="w-full h-9 bg-[#50d9cd] text-white border-none rounded text-sm font-semibold tracking-tight cursor-pointer transition-colors uppercase hover:bg-[#059669] hover:enabled:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
             disabled={
               auth.isLoading ||
               otp.some((digit) => digit === '') ||
@@ -185,11 +185,11 @@ const OtpInput = () => {
           </button>
         </div>
 
-        <div className="cancel-button-container">
+        <div className="w-full max-w-[360px] mt-2">
           <button
             type="button"
             onClick={handleCancel}
-            className="cancel-button"
+            className="w-full h-9 bg-transparent text-gray-400 border border-gray-300 rounded text-sm font-semibold tracking-tight cursor-pointer transition-all uppercase hover:bg-gray-200 hover:border-gray-200 hover:text-white hover:enabled:bg-gray-200 hover:enabled:border-gray-200 hover:enabled:text-white disabled:opacity-60 disabled:cursor-not-allowed"
             disabled={auth.isLoading}
           >
             Cancel
@@ -197,12 +197,12 @@ const OtpInput = () => {
         </div>
       </form>
 
-      <div className="resend-section">
-        <p>Didn't receive the code?</p>
+      <div className="max-w-[360px] text-center pt-2 border-t border-gray-200">
+        <p className="m-0 mb-2 text-gray-600 text-sm">Didn't receive the code?</p>
         <button
           type="button"
           onClick={handleResend}
-          className={`resend-button ${resendTimer > 0 ? 'disabled' : ''}`}
+          className={`bg-none border-none text-[#50d9cd] text-sm font-semibold cursor-pointer p-2 rounded transition-all hover:bg-green-50 hover:-translate-y-px ${resendTimer > 0 ? 'text-gray-400 cursor-not-allowed' : ''}`}
           disabled={resendTimer > 0 || auth.isLoading}
         >
           {resendTimer > 0 ? `Resend in ${resendTimer}s` : 'Resend code'}

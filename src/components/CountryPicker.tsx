@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { countries, searchCountries, type Country } from '../data/countries'
-import './CountryPicker.css'
 
 interface CountryPickerProps {
   selectedCountry: Country
@@ -116,12 +115,10 @@ const CountryPicker = ({
   }
 
   return (
-    <div className="country-picker" ref={dropdownRef}>
+    <div className="relative w-full h-full" ref={dropdownRef}>
       <button
         type="button"
-        className={`country-picker-trigger ${isOpen ? 'open' : ''} ${
-          disabled ? 'disabled' : ''
-        }`}
+        className={`flex justify-center items-center gap-2 w-full h-full px-2 border-0 border-b border-gray-300 bg-transparent text-sm font-medium cursor-pointer transition-all outline-none ${isOpen ? 'border-[#50d9cd]' : ''} ${disabled ? 'bg-gray-50 cursor-not-allowed opacity-60' : 'hover:border-[#50d9cd] focus:border-[#50d9cd]'}`}
         onClick={toggleDropdown}
         onKeyDown={handleKeyDown}
         disabled={disabled}
@@ -129,10 +126,10 @@ const CountryPicker = ({
         aria-expanded={isOpen}
         aria-label={`Selected country: ${selectedCountry.name}`}
       >
-        <span className="country-flag">{selectedCountry.flag}</span>
-        <span className="country-code">{selectedCountry.dialCode}</span>
+        <span className="text-base leading-none flex-shrink-0">{selectedCountry.flag}</span>
+        <span className="font-medium text-gray-800 flex-1 text-left">{selectedCountry.dialCode}</span>
         <svg
-          className={`dropdown-arrow ${isOpen ? 'rotated' : ''}`}
+          className={`flex-shrink-0 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           width="12"
           height="12"
           viewBox="0 0 12 12"
@@ -149,8 +146,8 @@ const CountryPicker = ({
       </button>
 
       {isOpen && (
-        <div className="country-picker-dropdown">
-          <div className="country-search">
+        <div className="absolute top-full left-0 right-0 z-50 bg-white border border-gray-200 rounded-lg shadow-lg max-h-[400px] min-h-[300px] overflow-hidden mt-1 w-[320px]">
+          <div className="p-3 mx-auto border-b border-gray-200 flex justify-center">
             <input
               ref={searchInputRef}
               type="text"
@@ -158,13 +155,13 @@ const CountryPicker = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
-              className="country-search-input"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm outline-none transition-colors focus:border-[#50d9cd]"
             />
           </div>
 
           <ul
             ref={listRef}
-            className="country-list"
+            className="max-h-[300px] overflow-y-auto p-0 m-0 list-none scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 hover:scrollbar-thumb-gray-500"
             role="listbox"
             aria-label="Country list"
           >
@@ -172,24 +169,22 @@ const CountryPicker = ({
               filteredCountries.map((country, index) => (
                 <li
                   key={country.code}
-                  className={`country-option ${
-                    index === highlightedIndex ? 'highlighted' : ''
-                  } ${country.code === selectedCountry.code ? 'selected' : ''}`}
+                  className={`flex items-center p-2.5 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0 ${index === highlightedIndex ? 'bg-gray-50' : ''} ${country.code === selectedCountry.code ? 'bg-green-50 text-[#50d9cd]' : 'hover:bg-gray-50'}`}
                   onClick={() => handleCountrySelect(country)}
                   role="option"
                   aria-selected={country.code === selectedCountry.code}
                 >
-                  <span className="country-flag">{country.flag}</span>
-                  <span className="country-info">
-                    <span className="country-name">{country.name}</span>
-                    <span className="country-dial-code">
+                  <span className="text-xl flex-shrink-0">{country.flag}</span>
+                  <span className="ml-2 flex items-center justify-between flex-1 min-w-0">
+                    <span className={`font-medium text-gray-800 flex-1 text-left overflow-hidden text-ellipsis whitespace-nowrap text-sm ${country.code === selectedCountry.code ? 'text-[#50d9cd]' : ''}`}>{country.name}</span>
+                    <span className={`text-sm text-gray-600 font-medium flex-shrink-0 ml-2 ${country.code === selectedCountry.code ? 'text-[#50d9cd]' : ''}`}>
                       {country.dialCode}
                     </span>
                   </span>
                 </li>
               ))
             ) : (
-              <li className="no-results">
+              <li className="p-4 text-center text-gray-600 text-sm italic">
                 No countries found matching "{searchQuery}"
               </li>
             )}

@@ -48,6 +48,9 @@ export class AuthApiService {
   private api: AxiosInstance
 
   constructor() {
+    if (!config?.apiUrl) {
+      throw new Error('AuthApiService: Missing config.apiUrl')
+    }
     this.api = axios.create({
       baseURL: config.apiUrl,
       timeout: 10000,
