@@ -131,6 +131,15 @@ const OtpInput = () => {
     }
   }
 
+  const handleCancel = () => {
+    setAuth({
+      phoneNumber: '',
+      isLoading: false,
+      error: '',
+      status: AuthStatus.VERIFY,
+    })
+  }
+
   return (
     <div className="otp-container">
       <div className="otp-header">
@@ -164,13 +173,30 @@ const OtpInput = () => {
 
         {auth.error && <div className="error-message">{auth.error}</div>}
 
-        <button
-          type="submit"
-          className="continue-button"
-          disabled={auth.isLoading || otp.some((digit) => digit === '')}
-        >
-          {auth.isLoading ? 'Verifying...' : 'Continue'}
-        </button>
+        <div className="otp-buttons">
+          <button
+            type="submit"
+            className="continue-button"
+            disabled={
+              auth.isLoading ||
+              otp.some((digit) => digit === '') ||
+              !!auth.error
+            }
+          >
+            {auth.isLoading ? 'Verifying...' : 'Continue'}
+          </button>
+        </div>
+
+        <div className="cancel-button-container">
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="cancel-button"
+            disabled={auth.isLoading}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
 
       <div className="resend-section">
