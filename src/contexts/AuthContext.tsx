@@ -5,14 +5,14 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import type { AuthStatusType } from '../services/authApi'
-import { AuthStatus } from './types'
+import type { AuthStatus } from './types'
+import { AuthStatuses } from './types'
 
 export interface AuthState {
   phoneNumber: string
   isLoading: boolean
   error: string
-  status: AuthStatusType
+  status: AuthStatus
   isInitialized: boolean
 }
 
@@ -27,7 +27,7 @@ const initialAuthState: AuthState = {
   phoneNumber: '',
   isLoading: false,
   error: '',
-  status: AuthStatus.VERIFY,
+  status: AuthStatuses.VERIFY,
   isInitialized: false,
 }
 

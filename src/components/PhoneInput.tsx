@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useAuthContext } from '../contexts/AuthContext'
+import { AuthStatuses } from '../contexts/types'
 import { type Country, findCountryByDialCode } from '../data/countries'
-import { authApi, AuthStatus } from '../services/authApi'
-import CountryPicker from './CountryPicker'
+import { authApi } from '../services/authApi'
 import '../styles/animations.css'
+import CountryPicker from './CountryPicker'
 import {
   formatPhoneNumber,
   formatPhoneNumberDisplay,
@@ -26,7 +27,7 @@ const PhoneInput = () => {
     setAuth({
       isLoading: true,
       error: '',
-      status: AuthStatus.REQUESTING_OTP,
+      status: AuthStatuses.REQUESTING_OTP,
     })
 
     try {
@@ -35,7 +36,7 @@ const PhoneInput = () => {
         setAuth({
           phoneNumber: phoneNumber,
           isLoading: false,
-          status: AuthStatus.SENT_OTP,
+          status: AuthStatuses.SENT_OTP,
         })
       }, 1500)
     } catch (error: unknown) {
@@ -45,7 +46,7 @@ const PhoneInput = () => {
           error instanceof Error
             ? error.message
             : 'Failed to send OTP. Please try again.',
-        status: AuthStatus.VERIFY,
+        status: AuthStatuses.VERIFY,
       })
     }
   }
@@ -95,7 +96,9 @@ const PhoneInput = () => {
         </div>
       </div>
 
-      {auth.error && <div className="text-red-500 text-xs mt-2">{auth.error}</div>}
+      {auth.error && (
+        <div className="text-red-500 text-xs mt-2">{auth.error}</div>
+      )}
 
       <button
         type="submit"

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useAuthContext } from '../contexts/AuthContext'
+import { AuthStatuses } from '../contexts/types'
 import { useSessionStorage } from '../hooks/useSessionStorage'
-import { authApi, AuthStatus } from '../services/authApi'
+import { authApi } from '../services/authApi'
 import '../styles/animations.css'
 
 const OtpInput = () => {
@@ -15,7 +16,7 @@ const OtpInput = () => {
     setAuth({
       isLoading: true,
       error: '',
-      status: AuthStatus.LOADING_VALIDATE_OTP,
+      status: AuthStatuses.LOADING_VALIDATE_OTP,
     })
 
     try {
@@ -23,7 +24,7 @@ const OtpInput = () => {
       saveToken(response, auth.phoneNumber)
       setAuth({
         isLoading: false,
-        status: AuthStatus.AUTHENTICATED,
+        status: AuthStatuses.AUTHENTICATED,
       })
     } catch (error: unknown) {
       setAuth({
@@ -32,7 +33,7 @@ const OtpInput = () => {
           error instanceof Error
             ? error.message
             : 'Invalid OTP. Please try again.',
-        status: AuthStatus.SENT_OTP,
+        status: AuthStatuses.SENT_OTP,
       })
     }
   }
@@ -41,14 +42,14 @@ const OtpInput = () => {
     setAuth({
       isLoading: true,
       error: '',
-      status: AuthStatus.REQUESTING_OTP,
+      status: AuthStatuses.REQUESTING_OTP,
     })
 
     try {
       await authApi.requestOtp(auth.phoneNumber)
       setAuth({
         isLoading: false,
-        status: AuthStatus.SENT_OTP,
+        status: AuthStatuses.SENT_OTP,
       })
 
       setResendTimer(60)
@@ -59,7 +60,7 @@ const OtpInput = () => {
           error instanceof Error
             ? error.message
             : 'Failed to resend OTP. Please try again.',
-        status: AuthStatus.SENT_OTP,
+        status: AuthStatuses.SENT_OTP,
       })
     }
   }
@@ -134,7 +135,7 @@ const OtpInput = () => {
       phoneNumber: '',
       isLoading: false,
       error: '',
-      status: AuthStatus.VERIFY,
+      status: AuthStatuses.VERIFY,
     })
   }
 

@@ -4,7 +4,7 @@ import OtpInput from '../../components/OtpInput'
 import PhoneInput from '../../components/PhoneInput'
 
 import { useAuthContext } from '../../contexts/AuthContext'
-import { AuthStatus } from '../../services/authApi'
+import { AuthStatuses } from '../../contexts/types'
 import '../../styles/animations.css'
 
 const Login = () => {
@@ -12,12 +12,12 @@ const Login = () => {
 
   const renderAuthStep = () => {
     switch (auth.status) {
-      case AuthStatus.VERIFY:
-      case AuthStatus.REQUESTING_OTP:
-      case AuthStatus.OTP_REQUEST_SUCCESS:
+      case AuthStatuses.VERIFY:
+      case AuthStatuses.REQUESTING_OTP:
+      case AuthStatuses.OTP_REQUEST_SUCCESS:
         return <PhoneInput />
-      case AuthStatus.SENT_OTP:
-      case AuthStatus.LOADING_VALIDATE_OTP:
+      case AuthStatuses.SENT_OTP:
+      case AuthStatuses.LOADING_VALIDATE_OTP:
         return <OtpInput />
       default:
         return (

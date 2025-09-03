@@ -1,7 +1,7 @@
 import { AuthProvider, useAuthContext } from './contexts/AuthContext'
+import { AuthStatuses } from './contexts/types'
 import { useSessionStorage } from './hooks/useSessionStorage'
 import Login from './pages/LoginPage/Login'
-import { AuthStatus } from './services/authApi'
 import './styles/animations.css'
 
 const AppContent = () => {
@@ -29,7 +29,7 @@ const AppContent = () => {
       phoneNumber: '',
       isLoading: false,
       error: '',
-      status: AuthStatus.VERIFY,
+      status: AuthStatuses.VERIFY,
     })
   }
 
