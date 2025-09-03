@@ -20,13 +20,11 @@ const OtpInput = () => {
 
     try {
       const response = await authApi.validateOtp(auth.phoneNumber, otpValue)
-
+      saveToken(response, auth.phoneNumber)
       setAuth({
         isLoading: false,
         status: AuthStatus.AUTHENTICATED,
       })
-
-      saveToken(response, auth.phoneNumber)
     } catch (error: unknown) {
       setAuth({
         isLoading: false,
