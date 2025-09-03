@@ -1,0 +1,13 @@
+.logo-wrapper {
+  height: auto;
+  width: 143px;
+  background: white;
+  margin: 16px 28px 16px 0px;
+  float: left;
+}
+
+.logo-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
