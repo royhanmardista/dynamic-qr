@@ -4,7 +4,7 @@ import { useSessionStorage } from './hooks/useSessionStorage'
 import Login from './pages/LoginPage/Login'
 import { AuthStatus } from './services/authApi'
 
-function AppContent() {
+const AppContent = () => {
   const { auth, setAuth } = useAuthContext()
   const { isAuthenticated, user, clearToken } = useSessionStorage()
 
@@ -58,7 +58,7 @@ function AppContent() {
   )
 }
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <AppContent />
