@@ -1,0 +1,97 @@
+# Component Creation Rule
+
+## **Required Component Pattern**
+
+When creating React components, you MUST use this exact pattern:
+
+**For components WITH props:**
+
+```typescript
+interface ComponentNameProps {
+  value: string
+  onChange: (value: string) => void
+}
+
+const ComponentName = ({ value, onChange }: ComponentNameProps) => {
+  // Component implementation
+  return (
+    // JSX content
+  )
+}
+```
+
+**For components WITHOUT props:**
+
+```typescript
+const ComponentName = () => {
+  // Component implementation
+  return (
+    // JSX content
+  )
+}
+```
+
+## **Key Requirements**
+
+- **Interface Naming**: Always use `ComponentNameProps` format
+- **Function Declaration**: Use `const ComponentName = ({ props }: ComponentNameProps)` syntax
+- **No React.FC**: Do NOT use `React.FC<ComponentNameProps>` syntax
+- **Props Destructuring**: Always destructure props in the function parameters
+- **Type Safety**: Ensure all props are properly typed in the interface
+
+## **Examples**
+
+**✅ DO (with props):**
+
+```typescript
+interface ButtonProps {
+  text: string
+  onClick: () => void
+  disabled?: boolean
+}
+
+const Button = ({ text, onClick, disabled }: ButtonProps) => {
+  return (
+    <button onClick={onClick} disabled={disabled}>
+      {text}
+    </button>
+  )
+}
+```
+
+**✅ DO (without props):**
+
+```typescript
+const Logo = () => {
+  return (
+    <div className="logo-wrapper">
+      <img src={logoImg} alt="Logo" />
+  )
+}
+```
+
+**❌ DON'T:**
+
+```typescript
+// Don't use React.FC
+const Button: React.FC<ButtonProps> = ({ text, onClick }) => {
+  // ...
+}
+
+// Don't use inline props
+const Button = (props: ButtonProps) => {
+  // ...
+}
+```
+
+## **When to Apply**
+
+- All new component files
+- Existing component refactoring
+- Component updates and modifications
+- Any component-related code changes
+  description:
+  globs:
+  alwaysApply: true
+
+---

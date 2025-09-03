@@ -1,0 +1,100 @@
+/* CSS Variables - Keep these as they're referenced throughout the app */
+:root {
+  /* Color Variables */
+  --primary-color: #50d9cd;
+  --primary-hover: #059669;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --secondary-color: #ecf4f2;
+  --secondary-hover: #e4ebe8;
+  --border-color: #d1d5db;
+  --border-light: #e5e7eb;
+  --background-light: #f8fafc;
+  --background-white: #ffffff;
+  --error-color: #ef4444;
+  --success-bg: #f0fdf4;
+  --disabled-bg: #f9fafb;
+
+  /* Spacing Variables */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Complex animations that can't be easily converted to Tailwind */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes success-bounce {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes success-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Custom focus underline animation for inputs */
+.animated-underline {
+  background: linear-gradient(var(--primary-color) 0 0) bottom / 0% 2px no-repeat;
+  transition: all 0.2s ease;
+}
+
+.animated-underline:focus {
+  background-size: 100% 2px;
+  border-color: transparent;
+}
+
+/* Spinner animation class */
+.spinner-animation {
+  animation: spin 1s linear infinite;
+}
+
+/* Success icon animation */
+.success-bounce-animation {
+  animation: success-bounce 0.6s ease-out;
+}
+
+/* OTP input success animation */
+.success-pulse-animation {
+  animation: success-pulse 0.3s ease;
+}
+

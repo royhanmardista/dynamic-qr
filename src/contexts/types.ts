@@ -1,0 +1,10 @@
+export const AuthStatuses = {
+  LOADING_VALIDATE_OTP: 'LOADING_VALIDATE_OTP',
+  REQUESTING_OTP: 'REQUESTING_OTP',
+  OTP_REQUEST_SUCCESS: 'OTP_REQUEST_SUCCESS',
+  SENT_OTP: 'SENT_OTP',
+  VERIFY: 'VERIFY',
+  AUTHENTICATED: 'AUTHENTICATED',
+} as const
+
+export type AuthStatus = keyof typeof AuthStatuses
