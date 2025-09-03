@@ -93,15 +93,15 @@
     gap: 1rem;
     text-align: center;
   }
-  
+
   .user-info {
     justify-content: center;
   }
-  
+
   .app-main {
     padding: 1rem;
   }
-  
+
   .qr-section {
     padding: 1.5rem;
   }
@@ -128,7 +128,7 @@
   width: 40px;
   height: 40px;
   border: 3px solid #e5e7eb;
-  border-top: 3px solid #50D9CD;
+  border-top: 3px solid #50d9cd;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -140,6 +140,10 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

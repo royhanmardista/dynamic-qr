@@ -1,4 +1,4 @@
 export default {
-  apiUrl: "https://dev-api.staffany.com",
-  environment: "staging",
-};
+  apiUrl: 'https://dev-api.staffany.com',
+  environment: 'staging',
+}

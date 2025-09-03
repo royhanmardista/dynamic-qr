@@ -1,142 +1,142 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useAuthContext } from "../contexts/AuthContext";
-import { useSessionStorage } from "../hooks/useSessionStorage";
-import { authApi, AuthStatus } from "../services/authApi";
-import "./OtpInput.css";
+import React, { useEffect, useRef, useState } from 'react'
+import { useAuthContext } from '../contexts/AuthContext'
+import { useSessionStorage } from '../hooks/useSessionStorage'
+import { authApi, AuthStatus } from '../services/authApi'
+import './OtpInput.css'
 
 const OtpInput: React.FC = () => {
-  const { auth, setAuth } = useAuthContext();
-  const { saveToken } = useSessionStorage();
-  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [resendTimer, setResendTimer] = useState(60);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const { auth, setAuth } = useAuthContext()
+  const { saveToken } = useSessionStorage()
+  const [otp, setOtp] = useState(['', '', '', '', '', ''])
+  const [resendTimer, setResendTimer] = useState(60)
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   const handleOtpSubmit = async (otpValue: string) => {
     setAuth({
       isLoading: true,
-      error: "",
+      error: '',
       status: AuthStatus.LOADING_VALIDATE_OTP,
-    });
+    })
 
     try {
-      const response = await authApi.validateOtp(auth.phoneNumber, otpValue);
+      const response = await authApi.validateOtp(auth.phoneNumber, otpValue)
 
       setAuth({
         isLoading: false,
         status: AuthStatus.AUTHENTICATED,
-      });
+      })
 
-      saveToken(response, auth.phoneNumber);
+      saveToken(response, auth.phoneNumber)
     } catch (error: unknown) {
       setAuth({
         isLoading: false,
         error:
           error instanceof Error
             ? error.message
-            : "Invalid OTP. Please try again.",
+            : 'Invalid OTP. Please try again.',
         status: AuthStatus.SENT_OTP,
-      });
+      })
     }
-  };
+  }
 
   const handleResendOtp = async () => {
     setAuth({
       isLoading: true,
-      error: "",
+      error: '',
       status: AuthStatus.REQUESTING_OTP,
-    });
+    })
 
     try {
-      await authApi.requestOtp(auth.phoneNumber);
+      await authApi.requestOtp(auth.phoneNumber)
       setAuth({
         isLoading: false,
         status: AuthStatus.SENT_OTP,
-      });
+      })
 
-      setResendTimer(60);
+      setResendTimer(60)
     } catch (error: unknown) {
       setAuth({
         isLoading: false,
         error:
           error instanceof Error
             ? error.message
-            : "Failed to resend OTP. Please try again.",
+            : 'Failed to resend OTP. Please try again.',
         status: AuthStatus.SENT_OTP,
-      });
+      })
     }
-  };
+  }
 
   useEffect(() => {
-    let interval: ReturnType<typeof setInterval>;
+    let interval: ReturnType<typeof setInterval>
     if (resendTimer > 0) {
       interval = setInterval(() => {
-        setResendTimer((prev) => prev - 1);
-      }, 1000);
+        setResendTimer((prev) => prev - 1)
+      }, 1000)
     }
-    return () => clearInterval(interval);
-  }, [resendTimer]);
+    return () => clearInterval(interval)
+  }, [resendTimer])
 
   const handleChange = (index: number, value: string) => {
-    if (!/^\d*$/.test(value)) return;
+    if (!/^\d*$/.test(value)) return
 
-    const newOtp = [...otp];
-    newOtp[index] = value;
-    setOtp(newOtp);
+    const newOtp = [...otp]
+    newOtp[index] = value
+    setOtp(newOtp)
 
     if (value && index < 5) {
-      inputRefs.current[index + 1]?.focus();
+      inputRefs.current[index + 1]?.focus()
     }
 
-    if (newOtp.every((digit) => digit !== "") && !auth.isLoading) {
-      handleOtpSubmit(newOtp.join(""));
+    if (newOtp.every((digit) => digit !== '') && !auth.isLoading) {
+      handleOtpSubmit(newOtp.join(''))
     }
-  };
+  }
 
   const handleKeyDown = (
     index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
-    if (e.key === "Backspace" && !otp[index] && index > 0) {
-      inputRefs.current[index - 1]?.focus();
+    if (e.key === 'Backspace' && !otp[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus()
     }
-  };
+  }
 
   const handlePaste = (e: React.ClipboardEvent) => {
-    e.preventDefault();
-    const pastedData = e.clipboardData.getData("text");
-    const digits = pastedData.replace(/\D/g, "").slice(0, 6);
+    e.preventDefault()
+    const pastedData = e.clipboardData.getData('text')
+    const digits = pastedData.replace(/\D/g, '').slice(0, 6)
 
     if (digits.length === 6) {
-      const newOtp = digits.split("");
-      setOtp(newOtp);
-      inputRefs.current[5]?.focus();
+      const newOtp = digits.split('')
+      setOtp(newOtp)
+      inputRefs.current[5]?.focus()
 
       if (!auth.isLoading) {
-        handleOtpSubmit(digits);
+        handleOtpSubmit(digits)
       }
     }
-  };
+  }
 
   const handleResend = () => {
     if (resendTimer === 0) {
-      handleResendOtp();
+      handleResendOtp()
     }
-  };
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const otpString = otp.join("");
+    e.preventDefault()
+    const otpString = otp.join('')
     if (otpString.length === 6) {
-      handleOtpSubmit(otpString);
+      handleOtpSubmit(otpString)
     }
-  };
+  }
 
   return (
     <div className="otp-container">
       <div className="otp-header">
         <h3>Enter verification code</h3>
         <p>
-          We sent a 6-digit code to{" "}
+          We sent a 6-digit code to{' '}
           <span className="phone-highlight">{auth.phoneNumber}</span>
         </p>
       </div>
@@ -147,7 +147,7 @@ const OtpInput: React.FC = () => {
             <input
               key={index}
               ref={(el) => {
-                inputRefs.current[index] = el;
+                inputRefs.current[index] = el
               }}
               type="text"
               inputMode="numeric"
@@ -167,9 +167,9 @@ const OtpInput: React.FC = () => {
         <button
           type="submit"
           className="continue-button"
-          disabled={auth.isLoading || otp.some((digit) => digit === "")}
+          disabled={auth.isLoading || otp.some((digit) => digit === '')}
         >
-          {auth.isLoading ? "Verifying..." : "Continue"}
+          {auth.isLoading ? 'Verifying...' : 'Continue'}
         </button>
       </form>
 
@@ -178,14 +178,14 @@ const OtpInput: React.FC = () => {
         <button
           type="button"
           onClick={handleResend}
-          className={`resend-button ${resendTimer > 0 ? "disabled" : ""}`}
+          className={`resend-button ${resendTimer > 0 ? 'disabled' : ''}`}
           disabled={resendTimer > 0 || auth.isLoading}
         >
-          {resendTimer > 0 ? `Resend in ${resendTimer}s` : "Resend code"}
+          {resendTimer > 0 ? `Resend in ${resendTimer}s` : 'Resend code'}
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default OtpInput;
+export default OtpInput

@@ -1,24 +1,24 @@
-import loginBackground from "../../assets/loginBackground.jpg";
-import Logo from "../../components/Logo";
-import OtpInput from "../../components/OtpInput";
-import PhoneInput from "../../components/PhoneInput";
+import loginBackground from '../../assets/loginBackground.jpg'
+import Logo from '../../components/Logo'
+import OtpInput from '../../components/OtpInput'
+import PhoneInput from '../../components/PhoneInput'
 
-import { useAuthContext } from "../../contexts/AuthContext";
-import { AuthStatus } from "../../services/authApi";
-import "./Login.css";
+import { useAuthContext } from '../../contexts/AuthContext'
+import { AuthStatus } from '../../services/authApi'
+import './Login.css'
 
 const Login = () => {
-  const { auth } = useAuthContext();
+  const { auth } = useAuthContext()
 
   const renderAuthStep = () => {
     switch (auth.status) {
       case AuthStatus.VERIFY:
       case AuthStatus.REQUESTING_OTP:
       case AuthStatus.OTP_REQUEST_SUCCESS:
-        return <PhoneInput />;
+        return <PhoneInput />
       case AuthStatus.SENT_OTP:
       case AuthStatus.LOADING_VALIDATE_OTP:
-        return <OtpInput />;
+        return <OtpInput />
       default:
         return (
           <div className="success-message">
@@ -26,9 +26,9 @@ const Login = () => {
             <h3>Verification Complete!</h3>
             <p>Redirecting you now...</p>
           </div>
-        );
+        )
     }
-  };
+  }
 
   return (
     <div className="login-wrapper">
@@ -46,7 +46,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

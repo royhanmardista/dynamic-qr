@@ -1,72 +1,72 @@
-import React, { useState } from "react";
-import { useAuthContext } from "../contexts/AuthContext";
-import { type Country, findCountryByDialCode } from "../data/countries";
-import { authApi, AuthStatus } from "../services/authApi";
-import CountryPicker from "./CountryPicker";
-import "./PhoneInput.css";
+import React, { useState } from 'react'
+import { useAuthContext } from '../contexts/AuthContext'
+import { type Country, findCountryByDialCode } from '../data/countries'
+import { authApi, AuthStatus } from '../services/authApi'
+import CountryPicker from './CountryPicker'
+import './PhoneInput.css'
 import {
   formatPhoneNumber,
   formatPhoneNumberDisplay,
   isValidPhoneNumber,
-} from "./validation";
+} from './validation'
 
 const PhoneInput: React.FC = () => {
-  const { auth, setAuth } = useAuthContext();
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const { auth, setAuth } = useAuthContext()
+  const [phoneNumber, setPhoneNumber] = useState('')
   const [selectedCountry, setSelectedCountry] = useState<Country>(
-    findCountryByDialCode("+65") || {
-      code: "SG",
-      dialCode: "+65",
-      name: "Singapore",
-      flag: "🇸🇬",
-    }
-  );
+    findCountryByDialCode('+65') || {
+      code: 'SG',
+      dialCode: '+65',
+      name: 'Singapore',
+      flag: '🇸🇬',
+    },
+  )
 
   const handlePhoneSubmit = async (phoneNumber: string) => {
     setAuth({
       isLoading: true,
-      error: "",
+      error: '',
       status: AuthStatus.REQUESTING_OTP,
-    });
+    })
 
     try {
-      await authApi.requestOtp(phoneNumber);
+      await authApi.requestOtp(phoneNumber)
       setTimeout(() => {
         setAuth({
           phoneNumber: phoneNumber,
           isLoading: false,
           status: AuthStatus.SENT_OTP,
-        });
-      }, 1500);
+        })
+      }, 1500)
     } catch (error: unknown) {
       setAuth({
         isLoading: false,
         error:
           error instanceof Error
             ? error.message
-            : "Failed to send OTP. Please try again.",
+            : 'Failed to send OTP. Please try again.',
         status: AuthStatus.VERIFY,
-      });
+      })
     }
-  };
+  }
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhoneNumberDisplay(e.target.value);
-    setPhoneNumber(formatted);
-  };
+    const formatted = formatPhoneNumberDisplay(e.target.value)
+    setPhoneNumber(formatted)
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const fullNumber = formatPhoneNumber(phoneNumber, selectedCountry.dialCode);
+    e.preventDefault()
+    const fullNumber = formatPhoneNumber(phoneNumber, selectedCountry.dialCode)
     if (!isValidPhoneNumber(phoneNumber)) {
-      return;
+      return
     }
-    handlePhoneSubmit(fullNumber);
-  };
+    handlePhoneSubmit(fullNumber)
+  }
 
   const handleCountrySelect = (country: Country) => {
-    setSelectedCountry(country);
-  };
+    setSelectedCountry(country)
+  }
 
   return (
     <form onSubmit={handleSubmit} className="phone-input-form">
@@ -89,7 +89,7 @@ const PhoneInput: React.FC = () => {
             required
             maxLength={20}
           />
-          <label className={`floating-label ${phoneNumber ? "active" : ""}`}>
+          <label className={`floating-label ${phoneNumber ? 'active' : ''}`}>
             Phone number
           </label>
         </div>
@@ -106,12 +106,12 @@ const PhoneInput: React.FC = () => {
           !isValidPhoneNumber(phoneNumber)
         }
       >
-        {auth.isLoading ? "Sending..." : "VERIFY"}
+        {auth.isLoading ? 'Sending...' : 'VERIFY'}
       </button>
 
       <div className="terms-text">
         <p>
-          By tapping Verify, you are indicating that you accept our{" "}
+          By tapping Verify, you are indicating that you accept our{' '}
           <a
             href="https://www.staffany.com/terms-of-services"
             target="_blank"
@@ -119,8 +119,8 @@ const PhoneInput: React.FC = () => {
             className="terms-link"
           >
             Terms of Service
-          </a>{" "}
-          and{" "}
+          </a>{' '}
+          and{' '}
           <a
             href="https://www.staffany.com/privacy-policy"
             target="_blank"
@@ -133,7 +133,7 @@ const PhoneInput: React.FC = () => {
         </p>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default PhoneInput;
+export default PhoneInput

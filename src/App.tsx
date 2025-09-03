@@ -1,12 +1,12 @@
-import "./App.css";
-import { AuthProvider, useAuthContext } from "./contexts/AuthContext";
-import { useSessionStorage } from "./hooks/useSessionStorage";
-import Login from "./pages/LoginPage/Login";
-import { AuthStatus } from "./services/authApi";
+import './App.css'
+import { AuthProvider, useAuthContext } from './contexts/AuthContext'
+import { useSessionStorage } from './hooks/useSessionStorage'
+import Login from './pages/LoginPage/Login'
+import { AuthStatus } from './services/authApi'
 
 function AppContent() {
-  const { auth, setAuth } = useAuthContext();
-  const { isAuthenticated, user, clearToken } = useSessionStorage();
+  const { auth, setAuth } = useAuthContext()
+  const { isAuthenticated, user, clearToken } = useSessionStorage()
 
   if (!auth.isInitialized) {
     return (
@@ -16,22 +16,22 @@ function AppContent() {
           <p>Loading...</p>
         </div>
       </div>
-    );
+    )
   }
 
   if (!isAuthenticated) {
-    return <Login />;
+    return <Login />
   }
 
   const handleLogout = () => {
-    clearToken();
+    clearToken()
     setAuth({
-      phoneNumber: "",
+      phoneNumber: '',
       isLoading: false,
-      error: "",
+      error: '',
       status: AuthStatus.VERIFY,
-    });
-  };
+    })
+  }
 
   return (
     <div className="app-container">
@@ -55,7 +55,7 @@ function AppContent() {
         </div>
       </main>
     </div>
-  );
+  )
 }
 
 function App() {
@@ -63,7 +63,7 @@ function App() {
     <AuthProvider>
       <AppContent />
     </AuthProvider>
-  );
+  )
 }
 
-export default App;
+export default App

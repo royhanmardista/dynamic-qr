@@ -23,15 +23,15 @@
 }
 
 .country-picker-trigger:hover:not(.disabled) {
-  border-bottom-color: #50D9CD;
+  border-bottom-color: #50d9cd;
 }
 
 .country-picker-trigger:focus:not(.disabled) {
-  border-bottom-color: #50D9CD;
+  border-bottom-color: #50d9cd;
 }
 
 .country-picker-trigger.open {
-  border-bottom-color: #50D9CD;
+  border-bottom-color: #50d9cd;
 }
 
 .country-picker-trigger.disabled {
@@ -72,7 +72,9 @@
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   max-height: 400px;
   min-height: 300px;
   overflow: hidden;
@@ -99,7 +101,7 @@
 }
 
 .country-search-input:focus {
-  border-color: #50D9CD;
+  border-color: #50d9cd;
 }
 
 .country-list {
@@ -130,7 +132,7 @@
 
 .country-option.selected {
   background-color: #ecfdf5;
-  color: #50D9CD;
+  color: #50d9cd;
 }
 
 .country-option .country-flag {
@@ -168,7 +170,7 @@
 
 .country-option.selected .country-name,
 .country-option.selected .country-dial-code {
-  color: #50D9CD;
+  color: #50d9cd;
 }
 
 .no-results {
@@ -204,16 +206,16 @@
     min-height: 250px;
     width: 280px;
   }
-  
+
   .country-list {
     max-height: 250px;
   }
-  
+
   .country-option {
     padding: 12px 14px;
     min-height: 44px;
   }
-  
+
   .country-search {
     padding: 10px;
   }

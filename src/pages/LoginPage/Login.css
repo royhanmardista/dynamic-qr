@@ -42,9 +42,8 @@
   width: 100%;
 }
 
-
 .terms-link {
-  color: #50D9CD;
+  color: #50d9cd;
   text-decoration: none;
 }
 
@@ -62,7 +61,7 @@
 .success-icon {
   width: 4rem;
   height: 4rem;
-  background: linear-gradient(135deg, #50D9CD 0%, #059669 100%);
+  background: linear-gradient(135deg, #50d9cd 0%, #059669 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -88,14 +87,14 @@
 }
 
 @keyframes success-bounce {
-  0% { 
+  0% {
     transform: scale(0);
     opacity: 0;
   }
-  50% { 
+  50% {
     transform: scale(1.1);
   }
-  100% { 
+  100% {
     transform: scale(1);
     opacity: 1;
   }
@@ -106,7 +105,7 @@
   .hero-image {
     display: block;
   }
-  
+
   .login-form-wrapper {
     padding: 50px 100px;
     width: 50%;
@@ -117,17 +116,17 @@
   .hero-image {
     display: none !important;
   }
-  
+
   .login-form-wrapper {
     padding: 20px;
     align-items: center;
     width: 100%;
   }
-  
+
   .login-form-content {
     max-width: 100%;
   }
-  
+
   .login-form-content h1 {
     font-size: 1.75rem;
     text-align: center;
