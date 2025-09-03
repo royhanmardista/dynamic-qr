@@ -154,7 +154,7 @@ const OtpInput = () => {
 
       <form onSubmit={handleSubmit} className="mb-4">
         <div
-          className="flex justify-between mb-3 w-full max-w-[360px] px-2"
+          className="flex justify-between mb-3 w-full max-w-[360px] px-1"
           onPaste={handlePaste}
         >
           {otp.map((digit, index) => (
