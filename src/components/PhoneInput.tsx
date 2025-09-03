@@ -99,7 +99,7 @@ const PhoneInput = () => {
 
       <button
         type="submit"
-        className="mt-4 h-9 w-full max-w-[360px] bg-[#50d9cd] text-white border-none rounded text-sm font-semibold tracking-tight cursor-pointer transition-colors uppercase hover:bg-[#059669] hover:enabled:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-primary mt-4"
         disabled={
           auth.isLoading ||
           !phoneNumber.trim() ||

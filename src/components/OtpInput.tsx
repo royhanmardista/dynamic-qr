@@ -169,7 +169,7 @@ const OtpInput = () => {
               value={digit}
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
-              className={`w-[45px] h-[45px] border-2 border-gray-200 rounded-md text-center text-base font-semibold text-gray-800 transition-all bg-white focus:outline-none focus:border-[#50d9cd] focus:shadow-[0_0_0_3px_rgba(80,217,205,0.1)] focus:scale-105 disabled:bg-gray-50 disabled:cursor-not-allowed ${digit ? 'border-[#50d9cd] bg-green-50' : ''}`}
+              className={`otp-input ${digit ? 'filled' : ''}`}
               disabled={auth.isLoading}
               autoComplete="one-time-code"
             />
@@ -183,7 +183,7 @@ const OtpInput = () => {
         <div className="w-full max-w-[360px] mb-2">
           <button
             type="submit"
-            className="w-full h-9 bg-[#50d9cd] text-white border-none rounded text-sm font-semibold tracking-tight cursor-pointer transition-colors uppercase hover:bg-[#059669] hover:enabled:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="btn-primary"
             disabled={
               auth.isLoading ||
               otp.some((digit) => digit === '') ||
@@ -198,7 +198,7 @@ const OtpInput = () => {
           <button
             type="button"
             onClick={handleCancel}
-            className="w-full h-9 bg-transparent text-gray-400 border border-gray-300 rounded text-sm font-semibold tracking-tight cursor-pointer transition-all uppercase hover:bg-gray-200 hover:border-gray-200 hover:text-white hover:enabled:bg-gray-200 hover:enabled:border-gray-200 hover:enabled:text-white disabled:opacity-60 disabled:cursor-not-allowed"
+            className="btn-secondary"
             disabled={auth.isLoading}
           >
             Cancel
