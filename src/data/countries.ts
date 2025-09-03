@@ -312,12 +312,6 @@ export const countries: Country[] = [
   { code: 'ZW', dialCode: '+263', name: 'Zimbabwe', flag: '🇿🇼' },
 ]
 
-export const findCountryByDialCode = (
-  dialCode: string,
-): Country | undefined => {
-  return countries.find((country) => country.dialCode === dialCode)
-}
-
 export const searchCountries = (query: string): Country[] => {
   if (!query) return countries
 

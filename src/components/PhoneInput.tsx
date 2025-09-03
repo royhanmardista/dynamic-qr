@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAuthContext } from '../contexts/AuthContext'
 import { AuthStatuses } from '../contexts/types'
-import { type Country, findCountryByDialCode } from '../data/countries'
+import { type Country, countries } from '../data/countries'
 import { authApi } from '../services/authApi'
 import '../styles/animations.css'
 import CountryPicker from './CountryPicker'
@@ -14,14 +14,7 @@ import {
 const PhoneInput = () => {
   const { auth, setAuth } = useAuthContext()
   const [phoneNumber, setPhoneNumber] = useState('')
-  const [selectedCountry, setSelectedCountry] = useState<Country>(
-    findCountryByDialCode('+65') || {
-      code: 'SG',
-      dialCode: '+65',
-      name: 'Singapore',
-      flag: '🇸🇬',
-    },
-  )
+  const [selectedCountry, setSelectedCountry] = useState<Country>(countries[0])
 
   const handlePhoneSubmit = async (phoneNumber: string) => {
     setAuth({
