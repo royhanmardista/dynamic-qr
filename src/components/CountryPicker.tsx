@@ -126,8 +126,12 @@ const CountryPicker = ({
         aria-expanded={isOpen}
         aria-label={`Selected country: ${selectedCountry.name}`}
       >
-        <span className="text-base leading-none flex-shrink-0">{selectedCountry.flag}</span>
-        <span className="font-medium text-gray-800 flex-1 text-left">{selectedCountry.dialCode}</span>
+        <span className="text-base leading-none flex-shrink-0">
+          {selectedCountry.flag}
+        </span>
+        <span className="font-medium text-gray-800 flex-1 text-left">
+          {selectedCountry.dialCode}
+        </span>
         <svg
           className={`flex-shrink-0 text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           width="12"
@@ -176,8 +180,14 @@ const CountryPicker = ({
                 >
                   <span className="text-xl flex-shrink-0">{country.flag}</span>
                   <span className="ml-2 flex items-center justify-between flex-1 min-w-0">
-                    <span className={`font-medium text-gray-800 flex-1 text-left overflow-hidden text-ellipsis whitespace-nowrap text-sm ${country.code === selectedCountry.code ? 'text-[#50d9cd]' : ''}`}>{country.name}</span>
-                    <span className={`text-sm text-gray-600 font-medium flex-shrink-0 ml-2 ${country.code === selectedCountry.code ? 'text-[#50d9cd]' : ''}`}>
+                    <span
+                      className={`font-medium text-gray-800 flex-1 text-left overflow-hidden text-ellipsis whitespace-nowrap text-sm ${country.code === selectedCountry.code ? 'text-[#50d9cd]' : ''}`}
+                    >
+                      {country.name}
+                    </span>
+                    <span
+                      className={`text-sm text-gray-600 font-medium flex-shrink-0 ml-2 ${country.code === selectedCountry.code ? 'text-[#50d9cd]' : ''}`}
+                    >
                       {country.dialCode}
                     </span>
                   </span>

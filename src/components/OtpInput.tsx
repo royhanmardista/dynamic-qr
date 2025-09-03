@@ -141,10 +141,14 @@ const OtpInput = () => {
   return (
     <div className="w-full max-w-[400px] text-left justify-start items-start">
       <div className="mb-12">
-        <h3 className="m-0 mb-2 text-2xl font-semibold text-gray-800">Enter verification code</h3>
+        <h3 className="m-0 mb-2 text-2xl font-semibold text-gray-800">
+          Enter verification code
+        </h3>
         <p className="m-0 text-gray-600 text-sm leading-relaxed">
           We sent a 6-digit code to{' '}
-          <span className="text-[#50d9cd] font-semibold tracking-wide">{auth.phoneNumber}</span>
+          <span className="text-[#50d9cd] font-semibold tracking-wide">
+            {auth.phoneNumber}
+          </span>
         </p>
       </div>
 
@@ -169,7 +173,9 @@ const OtpInput = () => {
           ))}
         </div>
 
-        {auth.error && <div className="text-red-500 text-xs mt-2">{auth.error}</div>}
+        {auth.error && (
+          <div className="text-red-500 text-xs mt-2">{auth.error}</div>
+        )}
 
         <div className="w-full max-w-[360px] mb-2">
           <button
@@ -198,7 +204,9 @@ const OtpInput = () => {
       </form>
 
       <div className="max-w-[360px] text-center pt-2 border-t border-gray-200">
-        <p className="m-0 mb-2 text-gray-600 text-sm">Didn't receive the code?</p>
+        <p className="m-0 mb-2 text-gray-600 text-sm">
+          Didn't receive the code?
+        </p>
         <button
           type="button"
           onClick={handleResend}

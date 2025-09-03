@@ -22,8 +22,12 @@ const Login = () => {
       default:
         return (
           <div className="text-center px-4 py-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#50d9cd] to-[#059669] rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-white font-bold success-bounce-animation">✓</div>
-            <h3 className="m-0 mb-2 text-gray-800 text-xl font-semibold">Verification Complete!</h3>
+            <div className="w-16 h-16 bg-gradient-to-br from-[#50d9cd] to-[#059669] rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-white font-bold success-bounce-animation">
+              ✓
+            </div>
+            <h3 className="m-0 mb-2 text-gray-800 text-xl font-semibold">
+              Verification Complete!
+            </h3>
             <p className="m-0 text-gray-600 text-sm">Redirecting you now...</p>
           </div>
         )
@@ -41,7 +45,9 @@ const Login = () => {
       <div className="flex items-center p-8 md:p-12 lg:p-24 w-full md:w-1/2 bg-gray-50 flex-shrink-0">
         <div className="flex flex-col w-full max-w-[400px]">
           <Logo />
-          <h1 className="my-6 md:my-8 text-3xl md:text-4xl font-normal text-gray-800 max-w-[400px] text-center md:text-left">Log in to Set Up Your Dynamic QR Code</h1>
+          <h1 className="my-6 md:my-8 text-3xl md:text-4xl font-normal text-gray-800 max-w-[400px] text-center md:text-left">
+            Log in to Set Up Your Dynamic QR Code
+          </h1>
           <div className="w-full">{renderAuthStep()}</div>
         </div>
       </div>
