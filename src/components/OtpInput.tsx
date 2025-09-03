@@ -153,7 +153,10 @@ const OtpInput = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="mb-4">
-        <div className="flex gap-3 justify-start mb-2" onPaste={handlePaste}>
+        <div
+          className="flex justify-between mb-3 w-full max-w-[360px] px-2"
+          onPaste={handlePaste}
+        >
           {otp.map((digit, index) => (
             <input
               key={index}
@@ -166,7 +169,7 @@ const OtpInput = () => {
               value={digit}
               onChange={(e) => handleChange(index, e.target.value)}
               onKeyDown={(e) => handleKeyDown(index, e)}
-              className={`w-10 h-10 border-2 border-gray-200 rounded-md text-center text-base font-semibold text-gray-800 transition-all bg-white focus:outline-none focus:border-[#50d9cd] focus:shadow-[0_0_0_3px_rgba(80,217,205,0.1)] focus:scale-105 disabled:bg-gray-50 disabled:cursor-not-allowed ${digit ? 'border-[#50d9cd] bg-green-50' : ''}`}
+              className={`w-[45px] h-[45px] border-2 border-gray-200 rounded-md text-center text-base font-semibold text-gray-800 transition-all bg-white focus:outline-none focus:border-[#50d9cd] focus:shadow-[0_0_0_3px_rgba(80,217,205,0.1)] focus:scale-105 disabled:bg-gray-50 disabled:cursor-not-allowed ${digit ? 'border-[#50d9cd] bg-green-50' : ''}`}
               disabled={auth.isLoading}
               autoComplete="one-time-code"
             />

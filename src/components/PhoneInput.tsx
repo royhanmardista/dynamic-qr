@@ -69,7 +69,7 @@ const PhoneInput = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex h-[100px] w-full flex-col justify-between mb-2.5">
+    <form onSubmit={handleSubmit} className="w-full">
       <div className="w-full max-w-[360px] h-[50px] flex gap-3 items-end">
         <div className="flex-shrink-0 w-[100px] h-[45px] z-10">
           <CountryPicker
@@ -99,7 +99,7 @@ const PhoneInput = () => {
 
       <button
         type="submit"
-        className="mt-2.5 h-9 w-full max-w-[360px] bg-[#50d9cd] text-white border-none rounded text-sm font-semibold tracking-tight cursor-pointer transition-colors uppercase hover:bg-[#059669] hover:enabled:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
+        className="mt-4 h-9 w-full max-w-[360px] bg-[#50d9cd] text-white border-none rounded text-sm font-semibold tracking-tight cursor-pointer transition-colors uppercase hover:bg-[#059669] hover:enabled:bg-[#059669] disabled:opacity-60 disabled:cursor-not-allowed"
         disabled={
           auth.isLoading ||
           !phoneNumber.trim() ||
