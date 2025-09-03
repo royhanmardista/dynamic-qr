@@ -4,7 +4,7 @@ import { useSessionStorage } from '../hooks/useSessionStorage'
 import { authApi, AuthStatus } from '../services/authApi'
 import './OtpInput.css'
 
-const OtpInput: React.FC = () => {
+const OtpInput = () => {
   const { auth, setAuth } = useAuthContext()
   const { saveToken } = useSessionStorage()
   const [otp, setOtp] = useState(['', '', '', '', '', ''])

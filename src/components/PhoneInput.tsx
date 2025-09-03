@@ -10,7 +10,7 @@ import {
   isValidPhoneNumber,
 } from './validation'
 
-const PhoneInput: React.FC = () => {
+const PhoneInput = () => {
   const { auth, setAuth } = useAuthContext()
   const [phoneNumber, setPhoneNumber] = useState('')
   const [selectedCountry, setSelectedCountry] = useState<Country>(

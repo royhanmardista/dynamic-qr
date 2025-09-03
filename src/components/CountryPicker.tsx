@@ -8,11 +8,11 @@ interface CountryPickerProps {
   disabled?: boolean
 }
 
-const CountryPicker: React.FC<CountryPickerProps> = ({
+const CountryPicker = ({
   selectedCountry,
   onCountrySelect,
   disabled = false,
-}) => {
+}: CountryPickerProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [filteredCountries, setFilteredCountries] =
