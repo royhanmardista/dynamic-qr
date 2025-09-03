@@ -63,13 +63,7 @@ const CountryPicker = ({
     <div className="relative w-full h-full" ref={dropdownRef}>
       <button
         type="button"
-        className={`flex justify-center items-center gap-2 w-full h-full px-2 border-0 border-b border-gray-300 bg-transparent text-sm font-medium cursor-pointer transition-all outline-none ${
-          isOpen ? 'border-[#50d9cd]' : ''
-        } ${
-          disabled
-            ? 'bg-gray-50 cursor-not-allowed opacity-60'
-            : 'hover:border-[#50d9cd] focus:border-[#50d9cd]'
-        }`}
+        className={`country-picker-trigger ${isOpen ? 'open' : ''} ${disabled ? 'disabled' : ''}`}
         onClick={toggleDropdown}
         disabled={disabled}
       >
@@ -99,7 +93,7 @@ const CountryPicker = ({
       </button>
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 z-50 bg-white border border-gray-200 rounded-lg shadow-lg max-h-[400px] overflow-hidden mt-1 w-[320px]">
+        <div className="country-dropdown">
           <div className="p-3 border-b border-gray-200">
             <input
               ref={searchInputRef}
@@ -107,40 +101,22 @@ const CountryPicker = ({
               placeholder="Search countries..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm outline-none transition-colors focus:border-[#50d9cd]"
+              className="country-search-input"
             />
           </div>
 
-          <ul className="max-h-[300px] overflow-y-auto">
+          <ul className="country-list">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
                 <li
                   key={country.code}
-                  className={`flex items-center p-2.5 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0 ${
-                    country.code === selectedCountry.code
-                      ? 'bg-green-50 text-[#50d9cd]'
-                      : 'hover:bg-gray-50'
-                  }`}
+                  className={`country-option ${country.code === selectedCountry.code ? 'selected' : ''}`}
                   onClick={() => handleCountrySelect(country)}
                 >
                   <span className="text-xl flex-shrink-0">{country.flag}</span>
                   <span className="ml-2 flex items-center justify-between flex-1 min-w-0">
-                    <span
-                      className={`font-medium text-gray-800 flex-1 text-left overflow-hidden text-ellipsis whitespace-nowrap text-sm ${
-                        country.code === selectedCountry.code
-                          ? 'text-[#50d9cd]'
-                          : ''
-                      }`}
-                    >
-                      {country.name}
-                    </span>
-                    <span
-                      className={`text-sm text-gray-600 font-medium flex-shrink-0 ml-2 ${
-                        country.code === selectedCountry.code
-                          ? 'text-[#50d9cd]'
-                          : ''
-                      }`}
-                    >
+                    <span className="country-name">{country.name}</span>
+                    <span className="country-dial-code">
                       {country.dialCode}
                     </span>
                   </span>

@@ -22,9 +22,7 @@ const Login = () => {
       default:
         return (
           <div className="text-center px-4 py-8">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#50d9cd] to-[#059669] rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-white font-bold success-bounce-animation">
-              ✓
-            </div>
+            <div className="success-icon">✓</div>
             <h3 className="m-0 mb-2 text-gray-800 text-xl font-semibold">
               Verification Complete!
             </h3>

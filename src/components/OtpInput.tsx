@@ -213,7 +213,7 @@ const OtpInput = () => {
         <button
           type="button"
           onClick={handleResend}
-          className={`bg-none border-none text-[#50d9cd] text-sm font-semibold cursor-pointer p-2 rounded transition-all hover:bg-green-50 hover:-translate-y-px ${resendTimer > 0 ? 'text-gray-400 cursor-not-allowed' : ''}`}
+          className={`resend-button ${resendTimer > 0 ? 'disabled' : ''}`}
           disabled={resendTimer > 0 || auth.isLoading}
         >
           {resendTimer > 0 ? `Resend in ${resendTimer}s` : 'Resend code'}

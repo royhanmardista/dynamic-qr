@@ -84,12 +84,12 @@ const PhoneInput = () => {
             type="tel"
             value={phoneNumber}
             onChange={handlePhoneChange}
-            className="w-full h-full p-0 border-0 border-b border-gray-300 animated-underline text-base font-medium outline-none disabled:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-60"
+            className="phone-input-animated"
             disabled={auth.isLoading}
             required
             maxLength={20}
           />
-          <label className={`absolute left-0.5 ${phoneNumber ? 'bottom-[30px] text-xs text-[#50d9cd] opacity-100' : 'bottom-2 text-gray-400 text-sm'} pointer-events-none transition-all duration-200 ease-in-out peer-focus:left-0.5 peer-focus:bottom-[30px] peer-focus:text-xs peer-focus:text-[#50d9cd] peer-focus:opacity-100`}>
+          <label className={`floating-label ${phoneNumber ? 'active' : ''}`}>
             Phone number
           </label>
         </div>

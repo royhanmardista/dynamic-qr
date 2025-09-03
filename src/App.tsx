@@ -12,7 +12,7 @@ const AppContent = () => {
     return (
       <div className="flex items-center justify-center h-screen w-full bg-gray-50">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-3 border-gray-200 border-t-[#50d9cd] rounded-full spinner-animation"></div>
+          <div className="spinner"></div>
           <p className="text-gray-600 text-sm m-0">Loading...</p>
         </div>
       </div>
@@ -35,7 +35,7 @@ const AppContent = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center shadow-sm md:flex-row flex-col gap-4 text-center">
+      <header className="app-header">
         <h1 className="m-0 text-2xl text-gray-800 font-bold">
           Dynamic QR Dashboard
         </h1>
